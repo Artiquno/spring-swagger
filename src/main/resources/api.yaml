@@ -28,10 +28,10 @@ schemes:
 - "https"
 - "http"
 paths:
-  /pet/{name}:
+  /pets/{name}:
     get:
       tags:
-      - "pet"
+        - "pet"
       summary: "Get all the pets and give a name for no reason"
       description: ""
       operationId: "getPets"
@@ -52,6 +52,30 @@ paths:
               $ref: '#/definitions/Pet'
         405:
           description: "Invalid input"
+    post:
+      tags: 
+        - "pet"
+      summary: "Get a new pet!"
+      description: ""
+      operationId: "savePet"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Congratulations! You have a new pet!"
+          schema:
+            $ref: "#/definitions/Pet"
+        405:
+          description: "Something is wrong with your pet"
+      parameters:
+        - name: pet
+          in: body
+          description: Your new cuddly friend
+          required: true
+          schema:
+            $ref: "#/definitions/Pet"
 
 securityDefinitions:
   petstore_auth:
@@ -66,112 +90,20 @@ securityDefinitions:
     name: "api_key"
     in: "header"
 definitions:
-  Order:
-    type: "object"
-    properties:
-      id:
-        type: "integer"
-        format: "int64"
-      petId:
-        type: "integer"
-        format: "int64"
-      quantity:
-        type: "integer"
-        format: "int32"
-      shipDate:
-        type: "string"
-        format: "date-time"
-      status:
-        type: "string"
-        description: "Order Status"
-        enum:
-        - "placed"
-        - "approved"
-        - "delivered"
-      complete:
-        type: "boolean"
-        default: false
-    xml:
-      name: "Order"
-  Category:
-    type: "object"
-    properties:
-      id:
-        type: "integer"
-        format: "int64"
-      name:
-        type: "string"
-    xml:
-      name: "Category"
-  User:
-    type: "object"
-    properties:
-      id:
-        type: "integer"
-        format: "int64"
-      username:
-        type: "string"
-      firstName:
-        type: "string"
-      lastName:
-        type: "string"
-      email:
-        type: "string"
-      password:
-        type: "string"
-      phone:
-        type: "string"
-      userStatus:
-        type: "integer"
-        format: "int32"
-        description: "User Status"
-    xml:
-      name: "User"
-  Tag:
-    type: "object"
-    properties:
-      id:
-        type: "integer"
-        format: "int64"
-      name:
-        type: "string"
-    xml:
-      name: "Tag"
   Pet:
     type: "object"
     required:
     - "name"
-    - "photoUrls"
     properties:
       id:
-        type: "integer"
-        format: "int64"
-      category:
-        $ref: "#/definitions/Category"
+        type: "string"
+        example: "91js81jwusau9a82ua8"
       name:
         type: "string"
-        example: "doggie"
-      photoUrls:
-        type: "array"
-        xml:
-          name: "photoUrl"
-          wrapped: true
-        items:
-          type: "string"
-      tags:
-        type: "array"
-        xml:
-          name: "tag"
-          wrapped: true
-        items:
-          $ref: "#/definitions/Tag"
+        example: "Snowball"
       status:
         type: "string"
         description: "pet status in the store"
-        enum:
-        - "available"
-        - "pending"
-        - "sold"
     xml:
       name: "Pet"
   ApiResponseThingy:
