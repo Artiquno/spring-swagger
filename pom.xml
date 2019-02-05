@@ -17,6 +17,9 @@
                         <goals>
                             <goal>repackage</goal>
                         </goals>
+                        <configuration>
+                            <skipTests>true</skipTests>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -32,6 +35,9 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
+                            <!-- Uncomment to print available options -->
+                            <!-- <configHelp>true</configHelp> -->
+
                             <!-- specify the swagger yaml -->
                             <inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
 
@@ -48,7 +54,7 @@
                                  you can use the following target: <language>spring</language> -->
                             <!-- pass any necessary config options -->
                             <configOptions>
-                                <dateLibrary>joda</dateLibrary>
+                                <dateLibrary>java</dateLibrary>
                                 <interfaceOnly>true</interfaceOnly>
                             </configOptions>
 
