@@ -24,6 +24,23 @@
                 </executions>
             </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
             <!-- activate the plugin -->
             <plugin>
                 <groupId>io.swagger</groupId>
@@ -60,6 +77,26 @@
 
                             <!-- override the default library to jersey2 -->
                             <library>spring-boot</library>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>target/thingy/src/main/java</source>
+                            </sources>
                         </configuration>
                     </execution>
                 </executions>
@@ -117,6 +154,19 @@
           <groupId>io.swagger</groupId>
           <artifactId>swagger-annotations</artifactId>
           <version>${swagger-annotations-version}</version>
+        </dependency>
+
+        <!-- MapStruct -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-jdk8</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${mapstruct.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <!--SpringFox dependencies -->
@@ -186,6 +236,7 @@
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.test.skip>true</maven.test.skip>
         <spring-boot-version>2.1.2.RELEASE</spring-boot-version>
         <swagger-annotations-version>1.5.21</swagger-annotations-version>
         <jersey-version>2.25.1</jersey-version>
@@ -194,5 +245,6 @@
         <maven-plugin-version>1.0.0</maven-plugin-version>
         <junit-version>4.8.1</junit-version>
         <springfox-version>2.7.0</springfox-version>
+        <mapstruct.version>1.2.0.Final</mapstruct.version>
     </properties>
 </project>

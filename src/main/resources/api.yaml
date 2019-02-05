@@ -28,6 +28,31 @@ schemes:
 - "https"
 - "http"
 paths:
+  /pets:
+    post:
+      tags: 
+        - "pet"
+      summary: "Get a new pet!"
+      description: ""
+      operationId: "savePet"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        201:
+          description: "Congratulations! You have a new pet!"
+          schema:
+            $ref: "#/definitions/Pet"
+        405:
+          description: "Something is wrong with your pet"
+      parameters:
+        - name: pet
+          in: body
+          description: Your new cuddly friend
+          required: true
+          schema:
+            $ref: "#/definitions/Pet"
   /pets/{name}:
     get:
       tags:
@@ -52,30 +77,6 @@ paths:
               $ref: '#/definitions/Pet'
         405:
           description: "Invalid input"
-    post:
-      tags: 
-        - "pet"
-      summary: "Get a new pet!"
-      description: ""
-      operationId: "savePet"
-      consumes:
-        - "application/json"
-      produces:
-        - "application/json"
-      responses:
-        200:
-          description: "Congratulations! You have a new pet!"
-          schema:
-            $ref: "#/definitions/Pet"
-        405:
-          description: "Something is wrong with your pet"
-      parameters:
-        - name: pet
-          in: body
-          description: Your new cuddly friend
-          required: true
-          schema:
-            $ref: "#/definitions/Pet"
 
 securityDefinitions:
   petstore_auth:
