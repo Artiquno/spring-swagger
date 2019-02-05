@@ -28,6 +28,7 @@ public class PetApiResource implements PetsApi {
 
     @Override
     public ResponseEntity<Pet> savePet(Pet pet) {
+        System.out.println("Saving a cuddly pet");
         return ResponseEntity.ok(petService.save(pet));
     }
 
