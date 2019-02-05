@@ -1,0 +1,11 @@
+spring:
+  data:
+    mongodb:
+      database: pets
+security:
+  oauth2:
+    client:
+      clientId: TimsMagicBeans
+      clientSecret: TimsSecretMagicBeans
+      authorized-grant-types: authorization_code,refresh_token,password
+      scope: openid
