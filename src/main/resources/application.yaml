@@ -9,3 +9,5 @@ security:
       clientSecret: TimsSecretMagicBeans
       authorized-grant-types: authorization_code,refresh_token,password
       scope: openid
+  user:
+    password: password
