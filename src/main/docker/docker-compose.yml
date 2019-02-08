@@ -1,0 +1,14 @@
+version: '3'
+services:
+  thingy:
+    image: thingy:latest
+    environment:
+    - SPRING_PROFILES_ACTIVE=prod
+    ports:
+    - 8080:8080
+  thingy-mongodb:
+    image: mongo:3.6.3
+    volumes:
+    - mongo-thingy:/data/db
+volumes:
+  mongo-thingy:
