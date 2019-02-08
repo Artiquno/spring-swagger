@@ -17,7 +17,7 @@ public class PetServiceImpl implements PetService {
     @Autowired
     PetRepository petRepository;
 
-    private PetMapper petMapper = Mappers.getMapper(PetMapper.class);
+    private final PetMapper petMapper = Mappers.getMapper(PetMapper.class);
 
     @Override
     public Pet save(Pet pet) {
