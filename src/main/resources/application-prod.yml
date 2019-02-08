@@ -1,3 +1,3 @@
 spring.data.mongodb:
     database: pets
-    uri: mongodb://thingy-mongodb:27017
+    uri: mongodb://temp-mongodb:27017
